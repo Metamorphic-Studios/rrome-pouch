@@ -33,7 +33,7 @@ export default class PouchConnector {
    getDataByModel(model_id){
       return this.getAll().then((data) => {
          return data.rows.filter((x) => {
-            if(x["_type"]=== model_id){
+            if(x.type === model_id){
                return x;
             }
          });
@@ -41,7 +41,7 @@ export default class PouchConnector {
    }
 
    createDataByModel(model_id, data){
-      var d = Object.assign({}, {_id: uuid.v4(), _type: model_id}, data);
+      var d = Object.assign({}, {_id: uuid.v4(), type: model_id}, data);
       return this.db.put(d);
    }
 }
