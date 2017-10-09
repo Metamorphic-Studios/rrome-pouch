@@ -1,6 +1,6 @@
 'use strict';
 
-var PouchDB = require('pouchdb');
+import PouchDB from 'pouchdb';
 
 export default class PouchConnector {
    constructor(opts){
