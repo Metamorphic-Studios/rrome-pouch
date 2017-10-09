@@ -29,9 +29,13 @@ var PouchConnector = function () {
       return this.db.put(d);
    };
 
+   PouchConnector.prototype.getAll = function getAll() {
+      return this.db.allDocs();
+   };
+
    PouchConnector.prototype.getDataByModel = function getDataByModel(model_id) {
-      return this.db.allDocs().then(function (data) {
-         return data.filter(function (x) {
+      return this.getAll().then(function (data) {
+         return data.rows.filter(function (x) {
             if (x.type === model_id) {
                return x;
             }
