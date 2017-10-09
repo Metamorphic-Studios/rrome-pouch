@@ -1,6 +1,7 @@
 'use strict';
 
 import PouchDB from 'pouchdb';
+var uuid = require('uuid');
 
 export default class PouchConnector {
    constructor(opts){
@@ -32,10 +33,15 @@ export default class PouchConnector {
    getDataByModel(model_id){
       return this.getAll().then((data) => {
          return data.rows.filter((x) => {
-            if(x.type === model_id){
+            if(x["_type"]=== model_id){
                return x;
             }
          });
       });
+   }
+
+   createDataByModel(model_id, data){
+      var d = Object.assign({}, {_id: uuid.v4(), _type: model_id}, data);
+      return this.db.put(d);
    }
 }

@@ -3,6 +3,7 @@
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 import PouchDB from 'pouchdb';
+var uuid = require('uuid');
 
 var PouchConnector = function () {
    function PouchConnector(opts) {
@@ -36,11 +37,16 @@ var PouchConnector = function () {
    PouchConnector.prototype.getDataByModel = function getDataByModel(model_id) {
       return this.getAll().then(function (data) {
          return data.rows.filter(function (x) {
-            if (x.type === model_id) {
+            if (x["_type"] === model_id) {
                return x;
             }
          });
       });
+   };
+
+   PouchConnector.prototype.createDataByModel = function createDataByModel(model_id, data) {
+      var d = Object.assign({}, { _id: uuid.v4(), _type: model_id }, data);
+      return this.db.put(d);
    };
 
    return PouchConnector;
