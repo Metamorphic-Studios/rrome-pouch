@@ -27,7 +27,7 @@ export default class PouchConnector {
    }
 
    getAll(){
-      return this.db.allDocs();
+      return this.db.allDocs({include_docs:true, attachments: true});
    }
 
    getDataByModel(model_id){
