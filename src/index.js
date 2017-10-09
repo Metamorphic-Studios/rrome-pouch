@@ -33,10 +33,10 @@ export default class PouchConnector {
    getDataByModel(model_id){
       return this.getAll().then((data) => {
          return data.rows.filter((x) => {
-            if(x.type === model_id){
+            if(x.doc.type === model_id){
                return x;
             }
-         });
+         }).map((x) => x.doc);
       });
    }
 
