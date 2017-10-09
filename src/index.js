@@ -25,9 +25,13 @@ export default class PouchConnector {
       return this.db.put(d);
    }
 
+   getAll(){
+      return this.db.allDocs();
+   }
+
    getDataByModel(model_id){
-      return this.db.allDocs().then((data) => {
-         return data.filter((x) => {
+      return this.getAll().then((data) => {
+         return data.rows.filter((x) => {
             if(x.type === model_id){
                return x;
             }
