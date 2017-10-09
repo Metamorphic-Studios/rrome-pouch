@@ -1,16 +1,34 @@
 # rrome-pouch
 
-[![Travis][build-badge]][build]
-[![npm package][npm-badge]][npm]
-[![Coveralls][coveralls-badge]][coveralls]
+PouchDB bindings for Rrome
 
-Describe rrome-pouch here.
+## Usage
+```javascript
 
-[build-badge]: https://img.shields.io/travis/user/repo/master.png?style=flat-square
-[build]: https://travis-ci.org/user/repo
+import PouchConnector from 'rrome-pouch';
+import { Form } from 'rrome-react';
 
-[npm-badge]: https://img.shields.io/npm/v/npm-package.png?style=flat-square
-[npm]: https://www.npmjs.org/package/npm-package
+const connector = new PouchConnector(opts);
 
-[coveralls-badge]: https://img.shields.io/coveralls/user/repo/master.png?style=flat-square
-[coveralls]: https://coveralls.io/github/user/repo
+<Form 
+   struct={}
+   content={}
+   connector={connector} />
+
+```
+
+## Options
+
+#### url 
+
+Url of remote pouchdb instance
+
+#### username
+
+Username for remote db
+
+#### password
+
+Password for remote db user
+
+
