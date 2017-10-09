@@ -2,6 +2,12 @@
 
 PouchDB bindings for Rrome
 
+## Installation
+
+```javascript
+npm install --save https://github.com/Metamorphic-Studios/rrome-pouch
+```
+
 ## Usage
 ```javascript
 
